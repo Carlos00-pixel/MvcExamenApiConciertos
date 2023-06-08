@@ -10,7 +10,7 @@ namespace MvcExamenApiConciertos.Services
         private IAmazonS3 ClientS3;
         public ServiceStorageS3(IConfiguration configuration, IAmazonS3 clientS3, KeysModel model)
         {
-            this.BucketName = model.S3Bucket;
+            this.BucketName = model.BucketName;
             this.ClientS3 = clientS3;
         }
 
@@ -37,29 +37,6 @@ namespace MvcExamenApiConciertos.Services
             {
                 return false;
             }
-        }
-
-        //ELIMINAMOS FICHEROS DEL BUCKET
-        public async Task<bool> DeleteFileAsync(string fileName)
-        {
-            DeleteObjectResponse response =
-                await this.ClientS3.DeleteObjectAsync(this.BucketName, fileName);
-            if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        //METODO PARA RECUPERAR UN FILE POR CODIGO
-        public async Task<Stream> GetFileAsync(string fileName)
-        {
-            GetObjectResponse response =
-                await this.ClientS3.GetObjectAsync(this.BucketName, fileName);
-            return response.ResponseStream;
         }
     }
 
