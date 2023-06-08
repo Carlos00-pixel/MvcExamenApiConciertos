@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MvcExamenApiConciertos.Models.Evento>
+
+@{
+    ViewData["Title"] = "BuscarPorCategoria";
+}
+
+<h1>BuscarPorCategoria</h1>
+
+<form method="post">
+    <label>Seleccione una Categoria:</label>
+
+    <input type="number" name="id" class="form-control" />
+
+    <div class="form-group">
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEvento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoria)
+            </td>
+            <td>
+                <img src="@ViewData["BUCKETURL"]@Html.DisplayFor(modelItem => item.Imagen)" style="width: 150px; height: 150px" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

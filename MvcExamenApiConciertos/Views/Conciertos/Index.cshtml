@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MvcExamenApiConciertos.Models.Evento>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Categorias" 
+        asp-controller="Conciertos"
+        class="btn btn-info">
+        Ver Categorias
+    </a>
+
+    <a asp-action="Create" 
+        asp-controller="Conciertos"
+        class="btn btn-outline-dark">
+        Crear
+    </a>
+
+    <a asp-action="BuscarPorCategoria" 
+        asp-controller="Conciertos"
+        class="btn btn-warning">
+        Buscar
+    </a>
+</p>
+<table class="table" style="background-color: cornflowerblue">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEvento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoria)
+            </td>
+            <td>
+                <img src="@ViewData["BUCKETURL"]@Html.DisplayFor(modelItem => item.Imagen)" style="width: 150px; height: 150px" />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
