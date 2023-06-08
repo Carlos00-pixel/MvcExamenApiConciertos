@@ -1,5 +1,6 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
+using MvcExamenApiConciertos.Models;
 
 namespace MvcExamenApiConciertos.Services
 {
@@ -7,9 +8,9 @@ namespace MvcExamenApiConciertos.Services
     {
         private string BucketName;
         private IAmazonS3 ClientS3;
-        public ServiceStorageS3(IConfiguration configuration, IAmazonS3 clientS3)
+        public ServiceStorageS3(IConfiguration configuration, IAmazonS3 clientS3, KeysModel model)
         {
-            this.BucketName = configuration.GetValue<string>("AWS:BucketName");
+            this.BucketName = model.S3Bucket;
             this.ClientS3 = clientS3;
         }
 

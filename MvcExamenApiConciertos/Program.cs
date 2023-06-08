@@ -1,5 +1,8 @@
 using Amazon.S3;
+using MvcExamenApiConciertos.Helpers;
+using MvcExamenApiConciertos.Models;
 using MvcExamenApiConciertos.Services;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<ServiceApiConciertos>();
 builder.Services.AddAWSService<IAmazonS3>();
 builder.Services.AddTransient<ServiceStorageS3>();
+
+string miSecreto = await HelperSecretManager.GetSecretAsync();
+KeysModel model = JsonConvert.DeserializeObject<KeysModel>(miSecreto);
+builder.Services.AddSingleton<KeysModel>(model);
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

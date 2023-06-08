@@ -10,12 +10,11 @@ namespace MvcExamenApiConciertos.Services
         private MediaTypeWithQualityHeaderValue Header;
         private string UrlApi;
 
-        public ServiceApiConciertos(IConfiguration configuration)
+        public ServiceApiConciertos(IConfiguration configuration, KeysModel model)
         {
             this.Header =
                 new MediaTypeWithQualityHeaderValue("application/json");
-            this.UrlApi =
-                configuration.GetValue<string>("ApiUrls:ApiConciertos");
+            this.UrlApi = model.ApiPersonajes;
         }
 
         private async Task<T> CallApiAsync<T>(string request)

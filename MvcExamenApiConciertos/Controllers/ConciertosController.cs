@@ -11,10 +11,10 @@ namespace MvcExamenApiConciertos.Controllers
         private string BucketUrl;
 
         public ConciertosController(ServiceApiConciertos service,
-            IConfiguration configuration, ServiceStorageS3 serviceS3)
+            IConfiguration configuration, ServiceStorageS3 serviceS3, KeysModel model)
         {
             this.service = service;
-            this.BucketUrl = configuration.GetValue<string>("AWS:BucketUrl");
+            this.BucketUrl = model.S3Bucket;
             this.serviceS3 = serviceS3;
         }
 
